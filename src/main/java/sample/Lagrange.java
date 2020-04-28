@@ -2,8 +2,8 @@ package sample;
 
 public class Lagrange {
 
-    public static String Lagrange(String function, Double firstlimit, Double secondlimit, int n){
-        String result = "";
+    public static double[][] Lagrange(String function, Double firstlimit, Double secondlimit, int n){
+        //String result = "";
         double h = (double)Math.round(((secondlimit-firstlimit)/n)*10d)/10d;
         Double y[] = new Double[n+1];
         Double x[] = new Double[n+1];
@@ -22,7 +22,8 @@ public class Lagrange {
             L[s] = firstlimit + (h * s);
         }
         int t = 0;
-
+        double[][] result = new double[n + 1][2];
+        int k = 0;
         for (int i = 0; i <= n; i++) {
             for (int j = 0; j <= n; j++) {
                 if (i == j) {
@@ -34,10 +35,13 @@ public class Lagrange {
             sum += proizvod * y[i];
             sum = (double)Math.round((sum)*10000d)/10000d;
             proizvod = 1.0;
-            result += x[i] + " " + sum + "\n";
+            //result += x[i] + " " + sum + "\n";
+            result[i][0] = x[i];
+            result[i][1] = sum;
             sum = 0.0;
 
         }
         return result;
     }
+
 }

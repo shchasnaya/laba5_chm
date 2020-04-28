@@ -4,6 +4,8 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 import org.mariuszgromada.math.mxparser.Argument;
@@ -17,48 +19,33 @@ public class Graph {
         XYSeries series_Runge_Square = new XYSeries("Square");
         XYSeries series_Lagrange = new XYSeries("Lagrange");
         XYSeries series_x_y = new XYSeries("Y(x)");
-
-        double x[]  = new double[n+1];
-        double y[]  = new double [n+1];
-
-
         double h = (double)Math.round(((b-a)/n)*10d)/10d;
 
-        Double [][]result_Eyler = new Double[n+1][2];
-        //result_Eyler = Eyler.method(expression, n, x, y, h);
-
-        Double [][]result_Runge_Kutta = new Double[n+1][2];
-        //result_Runge_Kutta = Runge_Kutta.method(expression, n, x, y, h);
-
-        Double [][]result_Adams = new Double[n+1][2];
-        //result_Adams = Adams.method(expression, n, x, y, h, a);
-
-        //int j = 0;
-        //for(int i=0; i < n; i++){
-            //series_Eyler.add(result_Eyler[i][j] , result_Eyler[i][j+1]);
-        //}
-        //dataset.addSeries(series_Eyler);
-
-        //j = 0;
-        //for(int i=0; i < n; i++){
-            //series_Adams.add(result_Adams[i][j] , result_Adams[i][j+1]);
-        //}
-        //dataset.addSeries(series_Adams);
-
-        //j = 0;
-        //for(int i=0; i < n; i++){
-            //series_Runge_Kutta.add(result_Runge_Kutta[i][j] , result_Runge_Kutta[i][j+1]);
-        //}
-        //dataset.addSeries(series_Runge_Kutta);
-
-
-        for (double i = 0; i < n; i++) {
-            double xi = i*h + h;
-            series_x_y.add(functions(expression, xi), i);
+        double[] x = new double[10];
+        double[] y = new double[10];
+        for (int i = 0; i < 10; i++) {
+            x[i] = i * h + a;
+            y[i] = functions(expression, x[i]);
+            series_x_y.add(x[i], y[i]);
         }
+        //series_x_y.setDescription("fghjklkjhg");
         dataset.addSeries(series_x_y);
 
-        //XYDataset xyDataset = new XYSeriesCollection(series);
+
+        double[][] result = Linear.linearTable(expression, a, b, n);
+        //XYSeries series = new XYSeries("Graph");
+        for (int i = 0; i < 10; i++) {
+            series_Linear.add(result[i][0], result[i][1]);
+        }
+        dataset.addSeries(series_Linear);
+
+        double[][] result_Lagrange = Linear.linearTable(expression, a, b, n);
+        //XYSeries series = new XYSeries("Graph");
+        for (int i = 0; i < 10; i++) {
+            series_Lagrange.add(result_Lagrange[i][0], result_Lagrange[i][1]);
+        }
+        dataset.addSeries(series_Lagrange);
+
         JFreeChart chart = ChartFactory
                 .createXYLineChart("function", "x", "y",
                         dataset,

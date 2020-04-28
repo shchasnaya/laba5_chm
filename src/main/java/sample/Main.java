@@ -169,7 +169,7 @@ public class Main extends Application implements EventHandler<ActionEvent> {
 
         ChoiceBox<String> methods = new ChoiceBox();
         methods.getItems().addAll("Lagrange interpolation", "Linear interpolation", "Square interpolation");
-        methods.setValue("Eyler's method");
+        methods.setValue("Lagrange interpolation");
 
         VBox uppanel = new VBox();
         HBox hBox = new HBox(5);
@@ -442,7 +442,14 @@ public class Main extends Application implements EventHandler<ActionEvent> {
         if (method == "Lagrange interpolation") {
             String function = enter.getText();
             out.setText(" ");
-            out.setText(Lagrange.Lagrange(function, Double.parseDouble(limitA.getText()), Double.parseDouble(limitB.getText()),Integer.parseInt(n.getText()) ));
+            int count = Integer.parseInt(n.getText());
+            double[][] result = new double[count + 1][2];
+            result = Lagrange.Lagrange(function, Double.parseDouble(limitA.getText()), Double.parseDouble(limitB.getText()),Integer.parseInt(n.getText()) );
+            String result_text = "";
+            for(int i = 0; i <= count; i++){
+                result_text += result[i][0] + " " + result[i][1] + "\n";
+            }
+            out.setText(result_text);
         }
         if (method == "Square interpolation") {
             String function = enter.getText();
@@ -452,8 +459,15 @@ public class Main extends Application implements EventHandler<ActionEvent> {
         if (method == "Linear interpolation") {
             String function = enter.getText();
             out.setText(" ");
-            out.setText(Arrays.deepToString(Linear.linearTable(function, Double.parseDouble(limitA.getText()), Double.parseDouble(limitB.getText()), Integer.parseInt(n.getText()))));
-            ResultGraph.show(function, Double.parseDouble(limitA.getText()), Double.parseDouble(limitB.getText()),Integer.parseInt(n.getText()));
+            int count = Integer.parseInt(n.getText());
+            double[][] result = new double[count + 1][2];
+            result = (Linear.linearTable(function, Double.parseDouble(limitA.getText()), Double.parseDouble(limitB.getText()), Integer.parseInt(n.getText())));
+            String result_text = "";
+            for(int i = 0; i <= count; i++){
+                result_text += result[i][0] + " " + result[i][1] + "\n";
+            }
+            out.setText(result_text);
+//ResultGraph.show(function, Double.parseDouble(limitA.getText()), Double.parseDouble(limitB.getText()),Integer.parseInt(n.getText()));
         }
 
     }
