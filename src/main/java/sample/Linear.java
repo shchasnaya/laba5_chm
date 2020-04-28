@@ -35,13 +35,9 @@ public class Linear {
         }
         int k = 0;
         double[] yr = new double[n + 1];
-        double[] xm = new double[n + 1];
         double[][] result = new double[n + 1][2];
-        for (int i = 0; i <= n; i++) {
-            xm[i] = a + (h * i);
-        }
         for (int i = 0; i < n; i++) {
-            yr[i] = pieceLinear(x, y, xm[i]);
+            yr[i] = pieceLinear(x, y, x[i]);
             result[k][0] = x[i];
             result[k][1] = yr[i];
             k++;
