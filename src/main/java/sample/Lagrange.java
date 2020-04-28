@@ -1,14 +1,7 @@
 package sample;
 
 public class Lagrange {
-    /**
-     * This method is used for counting by dichotomy method
-     * @param function
-     * @param firstlimit
-     * @param secondlimit
-     * @param n
-     * @return
-     */
+
     public static String Lagrange(String function, Double firstlimit, Double secondlimit, int n){
         String result = "";
         double h = (double)Math.round(((secondlimit-firstlimit)/n)*10d)/10d;

@@ -5,14 +5,6 @@ import org.mariuszgromada.math.mxparser.Argument;
 import static java.lang.Math.*;
 
 public class Linear {
-    /**
-     * This method is used for counting by dichotomy method
-     // * @param function
-     // * @param firstlimit
-     // * @param secondlimit
-     // * @param n
-     // * @return
-     */
 
     public static double pieceLinear(double[] x, double[] y, double xm) {
         int n = 10;
