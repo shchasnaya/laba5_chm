@@ -26,22 +26,18 @@ public class Linear {
     }
 
     public static double[][] linearTable(String f, double a, double b, int n) {
-        double h = (b - a)*0.1;
-        double[] x = new double[10];
-        double[] y = new double[10];
-        for (int i = 0; i < 10; i++) {
+        double h = (b - a) * 0.1;
+        double[] x = new double[n + 1];
+        double[] y = new double[n + 1];
+        for (int i = 0; i < n + 1; i++) {
             x[i] = i * h + a;
             y[i] = function(f, x[i]);
         }
         int k = 0;
         double[] yr = new double[n + 1];
-        double[] xm = new double[n + 1];
         double[][] result = new double[n + 1][2];
-        for (int i = 0; i <= n; i++) {
-            xm[i] = a + (h * i);
-        }
-        for (int i = 0; i < n; i++) {
-            yr[i] = pieceLinear(x, y, xm[i]);
+        for (int i = 0; i < n + 1; i++) {
+            yr[i] = pieceLinear(x, y, x[i]);
             result[k][0] = x[i];
             result[k][1] = yr[i];
             k++;
