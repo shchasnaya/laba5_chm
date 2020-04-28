@@ -9,7 +9,7 @@ public class Lagrange {
      * @param n
      * @return
      */
-    public static String Langrange(String function, Double firstlimit, Double secondlimit, int n){
+    public static String Lagrange(String function, Double firstlimit, Double secondlimit, int n){
         String result = "";
         double h = (double)Math.round(((secondlimit-firstlimit)/n)*10d)/10d;
         Double y[] = new Double[n+1];

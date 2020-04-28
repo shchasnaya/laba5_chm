@@ -57,6 +57,7 @@ public class Linear {
         return result;
     }
 
+
     public static double function(String expression, Double variable) {
         String line = "x= " + variable.toString();
         Argument var = new Argument(line);

@@ -11,6 +11,8 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import org.jfree.text.TextBox;
 
+import java.util.Arrays;
+
 public class Main extends Application implements EventHandler<ActionEvent> {
     String fun = new String("");
     TextField limitA = new TextField("A");
@@ -440,17 +442,18 @@ public class Main extends Application implements EventHandler<ActionEvent> {
         if (method == "Lagrange interpolation") {
             String function = enter.getText();
             out.setText(" ");
-            out.setText(Lagrange.Langrange(function, Double.parseDouble(limitA.getText()), Double.parseDouble(limitB.getText()),Integer.parseInt(n.getText()) ));
-        }
-        if (method == "Linear interpolation") {
-            String function = enter.getText();
-            out.setText(" ");
-            out.setText(Square.Square(function, Double.parseDouble(limitA.getText()), Double.parseDouble(limitB.getText()),Integer.parseInt(n.getText()) ));
+            out.setText(Lagrange.Lagrange(function, Double.parseDouble(limitA.getText()), Double.parseDouble(limitB.getText()),Integer.parseInt(n.getText()) ));
         }
         if (method == "Square interpolation") {
             String function = enter.getText();
             out.setText(" ");
-            out.setText(Linear.Linear(function, Double.parseDouble(limitA.getText()), Double.parseDouble(limitB.getText()),Integer.parseInt(n.getText()) ));
+            out.setText(Square.Square(function, Double.parseDouble(limitA.getText()), Double.parseDouble(limitB.getText()),Integer.parseInt(n.getText()) ));
+        }
+        if (method == "Linear interpolation") {
+            String function = enter.getText();
+            out.setText(" ");
+            out.setText(Arrays.deepToString(Linear.linearTable(function, Double.parseDouble(limitA.getText()), Double.parseDouble(limitB.getText()), Integer.parseInt(n.getText()))));
+            ResultGraph.show(function, Double.parseDouble(limitA.getText()), Double.parseDouble(limitB.getText()),Integer.parseInt(n.getText()));
         }
 
     }
