@@ -38,8 +38,8 @@ public class Linear {
         double[][] result = new double[n + 1][2];
         for (int i = 0; i < n + 1; i++) {
             yr[i] = pieceLinear(x, y, x[i]);
-            result[k][0] = x[i];
-            result[k][1] = yr[i];
+            result[k][0] =(double)Math.round((x[i])*10000d)/10000d;
+            result[k][1] = (double)Math.round((yr[i])*10000d)/10000d;
             k++;
         }
         return result;
